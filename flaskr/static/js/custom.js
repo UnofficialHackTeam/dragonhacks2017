@@ -83,9 +83,11 @@ function initMap() {
                animation: google.maps.Animation.DROP,
                draggable: true
              });
-             alert("Drag the marker to your location and press the check mark to submit.");
-             hideShow();
 
+             $('#form-submission').on("click",function() {
+               document.querySelector("#submit-button").style.display="block";
+               document.querySelectorAll("#button-group").style.display="none";
+             });
 
 
       // insert functionality to hide the button-group ID, display the submit-button ID, and text box to tell user to drag and press the check mark to submit
@@ -99,28 +101,7 @@ function initMap() {
 
  });
 
- function hideShow(){
-   var x = document.getElementById('button-group');
-   var y = document.getElementById('submit-button');
-   if(x.style.display==='block'){
-     x.style.display = 'none';
-     y.style.display = 'block';
-     $('#submit-button').on("click",function() {
 
-
-
-
-
-
-     });
-
-   }
-   else{
-     x.style.display='block';
-     y.style.display='none';
-   }
-
- }
 
 
 
