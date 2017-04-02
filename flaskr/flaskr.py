@@ -14,6 +14,8 @@ import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
+conn = sqlite3.connect('dragonhack.db')
+
 
 # create our little application :)
 app = Flask(__name__)
@@ -90,15 +92,15 @@ def addrec():
         try:
             longitude = request.form['longitude']
             latitude = request.form['latitude']
-            evnt = request.form['eventType']
+            evnt = "popup"
             title = request.form['title']
             description = request.form['description']
-            timestamp = request.form['timestamp']
+            timestamp = "test"
 
-            with sql.connect("dragonhack.db") as con:
+            with sqlite3.connect("dragonhack.db") as con:
+                import pdb; pdb.set_trace()
                 cur = con.cursor()
-                cur.execute("INSERT INTO Events (,,,,,) VALUES (?,?,?,?,?,?)",
-                            (longitude, latitude, evnt, title, description, timestamp))
+                cur.execute("INSERT INTO Location_Records (Longitude, Latitude, EventType, Title,Description,Timestamp) VALUES (?,?,?,?,?,?)", (longitude, latitude, evnt, title, description, timestamp))
 
                 con.commit()
                 msg = "Record successfully added"
@@ -108,7 +110,6 @@ def addrec():
 
         finally:
             return render_template("index.html")
-            con.close()
 
 # @app.route('/')
 # def show_entries():
