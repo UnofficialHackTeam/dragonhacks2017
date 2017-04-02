@@ -13,11 +13,10 @@ function initMap() {
     streetViewControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
-  var marker = new google.maps.Marker({
+  /*var marker = new google.maps.Marker({
           position: pos,
           map: map,
-          title: 'Hello World!'
-        });
+        });*/
   var infoWindow = new google.maps.InfoWindow({
     map: map
   });
@@ -38,7 +37,7 @@ function initMap() {
       map.setCenter(pos);
 
       console.log(pos);
-      marker.setPosition(pos);
+      //marker.setPosition(pos);
 
     }, function () {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -57,7 +56,7 @@ function initMap() {
 
 
 
- $('button').click(function(){
+ $('button').click(function(){ // adds a marker on any button click
 
      if (navigator.geolocation) {
 
@@ -77,7 +76,11 @@ function initMap() {
        }, function () {
          handleLocationError(true, infoWindow, map.getCenter());
        });
-        marker = new google.maps.Marker;
+       marker = new google.maps.Marker({
+               position: pos,
+               map: map,
+               animation: google.maps.Animation.DROP,
+             });
      } else {
        // Browser doesn't support Geolocation
        handleLocationError(false, infoWindow, map.getCenter());
@@ -89,7 +92,7 @@ function initMap() {
  });
 
 
-  plot_points = function(points_list){
+  /*plot_points = function(points_list){
     for(var i = 0; i<points_list.length; i++){
       console.log(user_points[i]);
       marker = new google.maps.Marker({
@@ -100,7 +103,7 @@ function initMap() {
 
       }
     }
-  plot_points(user_points);
+  plot_points(user_points);*/
   }
 
 
