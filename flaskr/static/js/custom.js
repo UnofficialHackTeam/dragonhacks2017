@@ -57,7 +57,7 @@ function initMap() {
 
 
 
- $('button').click(function(){ // adds a marker on any button click
+ $('button[type="submit"]').click(function(){ // adds a marker on any button click
 
      if (navigator.geolocation) {
 
