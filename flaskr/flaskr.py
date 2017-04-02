@@ -14,6 +14,8 @@ import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
+conn = sqlite3.connect('dragonhack.db')
+
 
 # create our little application :)
 app = Flask(__name__)
@@ -83,7 +85,8 @@ def addrec():
             description = request.form['description']
             timestamp = request.form['timestamp']
 
-            with sql.connect("dragonhack.db") as con:
+            with sqlite3.connect("dragonhack.db") as con:
+
                 cur = con.cursor()
                 cur.execute("INSERT INTO Events (,,,,,) VALUES (?,?,?,?,?,?)",
                             (longitude, latitude, evnt, title, description, timestamp))
@@ -96,7 +99,6 @@ def addrec():
 
         finally:
             return render_template("index.html")
-            con.close()
 
 # @app.route('/')
 # def show_entries():
