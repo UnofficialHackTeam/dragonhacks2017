@@ -14,11 +14,10 @@ function initMap() {
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
-  var marker = new google.maps.Marker({
+  /*var marker = new google.maps.Marker({
           position: pos,
           map: map,
-          title: 'Hello World!'
-        });
+        });*/
   var infoWindow = new google.maps.InfoWindow({
     map: map
   });
@@ -39,7 +38,7 @@ function initMap() {
       map.setCenter(pos);
 
       console.log(pos);
-      marker.setPosition(pos);
+      //marker.setPosition(pos);
 
     }, function () {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -58,8 +57,43 @@ function initMap() {
 
 
 
+ $('button').click(function(){ // adds a marker on any button click
 
-  plot_points = function(points_list){
+     if (navigator.geolocation) {
+
+       navigator.geolocation.getCurrentPosition(function (position) {
+
+         pos = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         };
+
+         infoWindow.setPosition(pos);
+         map.setCenter(pos);
+
+         console.log(pos);
+         marker.setPosition(pos);
+
+       }, function () {
+         handleLocationError(true, infoWindow, map.getCenter());
+       });
+       marker = new google.maps.Marker({
+               position: pos,
+               map: map,
+               animation: google.maps.Animation.DROP,
+             });
+     } else {
+       // Browser doesn't support Geolocation
+       handleLocationError(false, infoWindow, map.getCenter());
+     }
+
+
+
+
+ });
+
+
+  /*plot_points = function(points_list){
     for(var i = 0; i<points_list.length; i++){
       console.log(user_points[i]);
       marker = new google.maps.Marker({
@@ -70,7 +104,7 @@ function initMap() {
 
       }
     }
-  plot_points(user_points);
+  plot_points(user_points);*/
   }
 
 
