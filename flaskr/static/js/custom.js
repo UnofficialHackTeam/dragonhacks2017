@@ -3,6 +3,10 @@ var pos = {
     lng: 0
 };
 
+
+
+var user_points = {};
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -48,24 +52,56 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
-    var user_points = [{
-            lat: 39.954964,
-            lng: -75.182501
+    user_points = [{
+            location:
+            {lat: 39.954964,
+            lng: -75.182501},
+            content:
+            {type: "Event"}
+
         },
         {
+          location:{
             lat: 39.95484,
-            lng: -75.181981
+            lng: -75.181981},
+            content:{type: "Event"}
         },
         {
+          location:{
             lat: 39.956267,
-            lng: -75.182962
+            lng: -75.182962},
+            content:{type: "Incident"}
+
         },
         {
+          location:{
             lat: 39.955576,
-            lng: -75.181117
+            lng: -75.181117},
+            content:{type: "Popup"}
+
         }
     ];
+    plot_points = function(points_list){
+      for(var i = 0; i<points_list.length; i++){
+        console.log(user_points[i]);
+        marker = new google.maps.Marker({
+                position: user_points[i].location,
+                map: map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+              });
+              if(user_points[i].content.type==="Popup"){
+                marker.icon = ('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+              }
+              else if(user_points[i].content.type==="Event"){
+                marker.icon = ('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+              }
+              else if(user_points[i].content.type==="Incident"){
+                marker.icon = ('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+              }
 
+        }
+      }
+    plot_points(user_points);
 
     $('#button-group  button').on("click", function() {
         $('#submit-button').css("display", "block");
@@ -103,6 +139,7 @@ function initMap() {
                 pos.lng = lng;
                 marker.position = pos;
                 marker.draggable = false;
+
                 $('#longitude').val(lng);
                 $('#latitude').val(lat);
                 // $('#eventType').val(); NEEDS TO BE FILLED
@@ -121,18 +158,8 @@ function initMap() {
 
 
 
-    /*plot_points = function(points_list){
-      for(var i = 0; i<points_list.length; i++){
-        console.log(user_points[i]);
-        marker = new google.maps.Marker({
-                position: user_points[i],
-                map: map,
-                title: 'Hello World!'
-              });
 
-        }
-      }
-    plot_points(user_points);*/
+
 
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -179,8 +206,3 @@ function timeStamp() {
 // Return the formatted string
   return date.join("/") + " " + time.join(":") + " " + suffix;
 }
-
-$('#submit-button').popover({
-   'placement':'top',
-   'content':'Drag the red marker and click me to confirm your location'
-}).popover('show');
