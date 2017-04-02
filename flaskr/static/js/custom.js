@@ -57,7 +57,7 @@ function initMap() {
 
 
 
- $('button[type="submit"]').click(function(){ // adds a marker on any button click
+ $('#button-group').on("click",function() { // adds a marker on any button click
 
      if (navigator.geolocation) {
 
@@ -81,7 +81,14 @@ function initMap() {
                position: pos,
                map: map,
                animation: google.maps.Animation.DROP,
+               draggable: true
              });
+             alert("Drag the marker to your location and press the check mark to submit.");
+             hideShow();
+
+
+
+      // insert functionality to hide the button-group ID, display the submit-button ID, and text box to tell user to drag and press the check mark to submit
      } else {
        // Browser doesn't support Geolocation
        handleLocationError(false, infoWindow, map.getCenter());
@@ -91,6 +98,31 @@ function initMap() {
 
 
  });
+
+ function hideShow(){
+   var x = document.getElementById('button-group');
+   var y = document.getElementById('submit-button');
+   if(x.style.display==='block'){
+     x.style.display = 'none';
+     y.style.display = 'block';
+     $('#submit-button').on("click",function() {
+
+
+
+
+
+
+     });
+
+   }
+   else{
+     x.style.display='block';
+     y.style.display='none';
+   }
+
+ }
+
+
 
 
   /*plot_points = function(points_list){
