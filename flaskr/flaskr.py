@@ -88,7 +88,7 @@ def addrec():
             evnt = request.form['eventType']
             title = request.form['title']
             description = request.form['description']
-            timestamp = "test"
+            timestamp = request.form['timestamp']
 
             with sqlite3.connect("dragonhack.db") as con:
                 import pdb; pdb.set_trace()
