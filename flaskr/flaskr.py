@@ -30,19 +30,6 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-#Adds a random latitude and longitude to the database
-@app.route('/add')
-def add_entry():
-    db = get_db()
-    purchases= (1.222,3.4444,"2017-09-02 04:05:06.333")
-    db.execute('INSERT INTO Location_Records (Latitude, Longitude, Timestamp) values (?, ?, ?)', purchases)
-    db.commit()
-    return "hello"
-#    flash('New entry was successfully posted')
-#    return redirect(url_for('show_entries'))
-
-
-
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
@@ -83,6 +70,12 @@ def close_db(error):
 
 @app.route('/')
 def index():
+    # with sqlite3.connect("dragonhack.db") as con:
+    #     import pdb; pdb.set_trace()
+    #     cur = con.cursor()
+    #     cur.execute("SELECT * FROM Location_Records")
+
+    #     msg = "Record successfully added"
     return render_template('index.html')
 
 
@@ -92,7 +85,7 @@ def addrec():
         try:
             longitude = request.form['longitude']
             latitude = request.form['latitude']
-            evnt = "popup"
+            evnt = request.form['eventType']
             title = request.form['title']
             description = request.form['description']
             timestamp = "test"

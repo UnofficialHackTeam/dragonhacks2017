@@ -68,6 +68,7 @@ function initMap() {
 
 
     $('#button-group  button').on("click", function() {
+        $('#eventType').val($(this).attr('value'))
         $('#submit-button').css("display", "block");
         $('#button-group button').css("display", "none");
 
@@ -118,9 +119,6 @@ function initMap() {
         }
     });
 }
-
-
-
     /*plot_points = function(points_list){
       for(var i = 0; i<points_list.length; i++){
         console.log(user_points[i]);
