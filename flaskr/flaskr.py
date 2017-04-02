@@ -80,16 +80,15 @@ def addrec():
         try:
             longitude = request.form['longitude']
             latitude = request.form['latitude']
-            evnt = request.form['eventType']
+            evnt = "popup"
             title = request.form['title']
             description = request.form['description']
-            timestamp = request.form['timestamp']
+            timestamp = "test"
 
             with sqlite3.connect("dragonhack.db") as con:
-
+                import pdb; pdb.set_trace()
                 cur = con.cursor()
-                cur.execute("INSERT INTO Events (,,,,,) VALUES (?,?,?,?,?,?)",
-                            (longitude, latitude, evnt, title, description, timestamp))
+                cur.execute("INSERT INTO Location_Records (Longitude, Latitude, EventType, Title,Description,Timestamp) VALUES (?,?,?,?,?,?)", (longitude, latitude, evnt, title, description, timestamp))
 
                 con.commit()
                 msg = "Record successfully added"

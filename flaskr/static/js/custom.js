@@ -96,7 +96,7 @@ function initMap() {
                 draggable: true
             });
 
-            $("#submit-button").on("click", function() {
+            $("#submit").on("click", function() {
                 var lat = marker.getPosition().lat();
                 var lng = marker.getPosition().lng();
                 pos.lat = lat;
