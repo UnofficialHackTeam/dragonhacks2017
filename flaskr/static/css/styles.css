@@ -9,15 +9,6 @@ html, body{
 	width: 100%;
 }
 
-
-.full {
-  background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -43,11 +34,13 @@ html, body{
   line-height: 1.33;
   border-radius: 35px;
 }
-#mapButton{
+#button-group{
     position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
     right: 0;
-    margin: 20px;
+    margin-bottom: 20px;
 }
 
 #map, #map-container{
@@ -56,3 +49,6 @@ html, body{
     margin: 0;
     padding: 0;
 }
+
+
+

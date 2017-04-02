@@ -83,7 +83,7 @@ def index():
 #     if not session.get('logged_in'):
 #         abort(401)
 #     db = get_db()
-#     db.execute('insert into entries (title, text) values (?, ?)',
+#     db.execute('INSERT INTO Location_Records (Latitude, Logitude, Timestamp) values (?, ?, ?)',
 #                [request.form['title'], request.form['text']])
 #     db.commit()
 #     flash('New entry was successfully posted')
