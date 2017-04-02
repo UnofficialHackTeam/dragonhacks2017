@@ -11,6 +11,7 @@ function initMap() {
     },
     zoom: 17,
     streetViewControl: false,
+    disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   });
   var marker = new google.maps.Marker({
