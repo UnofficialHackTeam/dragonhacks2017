@@ -39,7 +39,6 @@ html, body{
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
-    right: 0;
     margin-bottom: 20px;
 }
 
