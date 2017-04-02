@@ -57,6 +57,37 @@ function initMap() {
 
 
 
+ $('button').click(function(){
+
+     if (navigator.geolocation) {
+
+       navigator.geolocation.getCurrentPosition(function (position) {
+
+         pos = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         };
+
+         infoWindow.setPosition(pos);
+         map.setCenter(pos);
+
+         console.log(pos);
+         marker.setPosition(pos);
+
+       }, function () {
+         handleLocationError(true, infoWindow, map.getCenter());
+       });
+        marker = new google.maps.Marker;
+     } else {
+       // Browser doesn't support Geolocation
+       handleLocationError(false, infoWindow, map.getCenter());
+     }
+
+
+
+
+ });
+
 
   plot_points = function(points_list){
     for(var i = 0; i<points_list.length; i++){
