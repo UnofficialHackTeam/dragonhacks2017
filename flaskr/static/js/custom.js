@@ -104,6 +104,7 @@ function initMap() {
     plot_points(user_points);
 
     $('#button-group  button').on("click", function() {
+        $('#eventType').val($(this).attr('value'))
         $('#submit-button').css("display", "block");
         $('#button-group button').css("display", "none");
 
@@ -132,7 +133,7 @@ function initMap() {
                 draggable: true
             });
 
-            $("#submit-button").on("click", function() {
+            $("#submit").on("click", function() {
                 var lat = marker.getPosition().lat();
                 var lng = marker.getPosition().lng();
                 pos.lat = lat;
@@ -155,9 +156,20 @@ function initMap() {
         }
     });
 }
+<<<<<<< HEAD
 
 
 
+=======
+    /*plot_points = function(points_list){
+      for(var i = 0; i<points_list.length; i++){
+        console.log(user_points[i]);
+        marker = new google.maps.Marker({
+                position: user_points[i],
+                map: map,
+                title: 'Hello World!'
+              });
+>>>>>>> master
 
 
 

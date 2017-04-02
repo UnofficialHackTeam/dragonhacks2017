@@ -30,7 +30,6 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
@@ -71,6 +70,12 @@ def close_db(error):
 
 @app.route('/')
 def index():
+    # with sqlite3.connect("dragonhack.db") as con:
+    #     import pdb; pdb.set_trace()
+    #     cur = con.cursor()
+    #     cur.execute("SELECT * FROM Location_Records")
+
+    #     msg = "Record successfully added"
     return render_template('index.html')
 
 
@@ -86,10 +91,9 @@ def addrec():
             timestamp = request.form['timestamp']
 
             with sqlite3.connect("dragonhack.db") as con:
-
+                import pdb; pdb.set_trace()
                 cur = con.cursor()
-                cur.execute("INSERT INTO Events (,,,,,) VALUES (?,?,?,?,?,?)",
-                            (longitude, latitude, evnt, title, description, timestamp))
+                cur.execute("INSERT INTO Location_Records (Longitude, Latitude, EventType, Title,Description,Timestamp) VALUES (?,?,?,?,?,?)", (longitude, latitude, evnt, title, description, timestamp))
 
                 con.commit()
                 msg = "Record successfully added"
