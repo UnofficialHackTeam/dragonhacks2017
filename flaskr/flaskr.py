@@ -28,6 +28,18 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+#Adds a random latitude and longitude to the database
+@app.route('/add')
+def add_entry():
+    db = get_db()
+    purchases= (1.222,3.4444,"2017-09-02 04:05:06.333")
+    db.execute('INSERT INTO Location_Records (Latitude, Longitude, Timestamp) values (?, ?, ?)', purchases)
+    db.commit()
+    return "hello"
+#    flash('New entry was successfully posted')
+#    return redirect(url_for('show_entries'))
+
+
 
 def connect_db():
     """Connects to the specific database."""
