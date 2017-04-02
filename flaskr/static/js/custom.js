@@ -57,7 +57,7 @@ function initMap() {
 
 
 
- $('#button-group').on("click",function() { // adds a marker on any button click
+ $('button[data-target="#myModal"]').on("click",function() { // adds a marker on any button click
 
      if (navigator.geolocation) {
 
@@ -101,11 +101,6 @@ function initMap() {
 
  });
 
-
-
-
-
-
   /*plot_points = function(points_list){
     for(var i = 0; i<points_list.length; i++){
       console.log(user_points[i]);
@@ -119,13 +114,6 @@ function initMap() {
     }
   plot_points(user_points);*/
   }
-
-
-
-
-
-
-
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
