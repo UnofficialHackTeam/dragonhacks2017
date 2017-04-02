@@ -40,6 +40,7 @@
     <!-- /.container -->
 
     <div id="button-group">
+        <span>{{msg}}</span>
         <button type="button" class="btn btn-primary btn-circle btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-magic" aria-hidden="true"></i></button>
         <button type="button" class="btn btn-warning btn-circle btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-calendar" aria-hidden="true"></i></button>
         <button type="button" class="btn btn-danger btn-circle btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
@@ -57,20 +58,23 @@
                     <h4 class="modal-title">Report Form</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+
+                    <form action = "{{ url_for('addrec') }}" method = "POST">
                         <div class="form-group">
                             <label for="tile">What's going on?</label>
-                            <input type="text" class="form-control" id="title" placeholder="Enter brief title...">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter brief title...">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" placeholder="Enter a description!">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter a description!">
                         </div>
+                        <input type="hidden" class="form-control" id="longitude" name="longitude"/>
+                        <input type="hidden" class="form-control" id="latitude" name="latitude"/>
+                        <input type="hidden" class="form-control" id="eventType" name="eventType"/>
+                        <input type="hidden" class="form-control" id="timestamp" name="timestamp"/>
+                        <button type="submit" class="btn btn-default btn-success">Submit</button>
+
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

@@ -66,9 +66,37 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/addrec', methods=['POST', 'GET'])
+def addrec():
+    if request.method == 'POST':
+        try:
+            longitude = request.form['longitude']
+            latitude = request.form['latitude']
+            evnt = request.form['eventType']
+            title = request.form['title']
+            description = request.form['description']
+            timestamp = request.form['timestamp']
+
+            with sql.connect("dragonhack.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO Events (,,,,,) VALUES (?,?,?,?,?,?)",
+                            (longitude, latitude, evnt, title, description, timestamp))
+
+                con.commit()
+                msg = "Record successfully added"
+        except:
+            con.rollback()
+            msg = "error in insert operation"
+
+        finally:
+            return render_template("index.html")
+            con.close()
 
 # @app.route('/')
 # def show_entries():
